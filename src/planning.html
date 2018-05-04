@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>	
+    <script type="text/javascript" async="false" defer="false" src="https://api.trello.com/1/client.js?key=1ee60111082541b8224b89f4dd5e3c45"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="bundle.js" async="false" defer="true"></script>
+  </head>
+  <body>
+    <div id="event_bus"></div>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow" data-controller="trello" data-trello-connected="false" >
+      <h5 class="my-0 mr-md-auto font-weight-normal"><a href="index.html">Trello Remote Planning</a></h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">Features</a>
+        <a class="p-2 text-dark" href="#">Enterprise</a>
+        <a class="p-2 text-dark" href="#">Support</a>
+        <a data-target="trello.username" class="p-2 text-dark" href="#">Not Connected</a>
+      </nav>
+      <a 
+                                                               class="btn btn-outline-primary" 
+                                                               data-action="click->trello#login" 
+                                                               href="#"><i class="fab fa-trello"></i> <span data-target="trello.login">Login</span></a>
+    </div>
+
+    <div class="container" data-controller="planning">
+
+      <main role="main">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="mb-4">Plan your backlog</h4>
+
+          <div class="mb-6">
+            <label for="sprint-backlog">Sprint backlog column</label>
+            <select 
+                   data-action="planning#selectList"
+                   data-target="planning.backlog" 
+                   class="custom-select d-block w-100"
+                   id="sprint-backlog">
+            </select> 
+          </div>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Cards</span>
+            <span class="badge badge-secondary badge-pill">23</span>
+          </h4>
+          <ul class="list-group mb-3"
+              data-target="planning.cardList">
+          </ul>
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Selected Card</h4>
+          <div class="mb-6">
+            <label for="card-name">Card Name</label>
+            <input 
+                   id="card-name"
+                   type="text"
+                   data-target="planning.cardName" 
+                   readonly
+                   class="form-control">
+            </input> 
+          </div>
+          <div class="mb-6">
+            <label for="card-desc">Card Name</label>
+            <textarea
+                   id="card-desc"
+                   rows="5"
+                   data-target="planning.cardDesc" 
+                   readonly
+                   class="form-control">
+            </textarea> 
+          </div>
+          <div class="cards-wrapper">
+            <div class="cards">
+              <button complexity="0" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">0</div>
+                <div class="card-ru">0</div>
+                <div class="card-lb">0</div>
+                <div class="card-rb">0</div>
+                <div class="card-center">0</div>
+              </button>
+              <button complexity="0,5" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">½</div>
+                <div class="card-ru">½</div>
+                <div class="card-lb">½</div>
+                <div class="card-rb">½</div>
+                <div class="card-center">½</div>
+              </button>
+              <button complexity="1" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">1</div>
+                <div class="card-ru">1</div>
+                <div class="card-lb">1</div>
+                <div class="card-rb">1</div>
+                <div class="card-center">1</div>
+              </button>
+              <button complexity="2" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">2</div>
+                <div class="card-ru">2</div>
+                <div class="card-lb">2</div>
+                <div class="card-rb">2</div>
+                <div class="card-center">2</div>
+              </button>
+              <button complexity="3" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">3</div>
+                <div class="card-ru">3</div>
+                <div class="card-lb">3</div>
+                <div class="card-rb">3</div>
+                <div class="card-center">3</div>
+              </button>
+              <button complexity="5" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">5</div>
+                <div class="card-ru">5</div>
+                <div class="card-lb">5</div>
+                <div class="card-rb">5</div>
+                <div class="card-center">5</div>
+              </button>
+              <button complexity="8" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">8</div>
+                <div class="card-ru">8</div>
+                <div class="card-lb">8</div>
+                <div class="card-rb">8</div>
+                <div class="card-center">8</div>
+              </button>
+              <button complexity="13" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">13</div>
+                <div class="card-ru">13</div>
+                <div class="card-lb">13</div>
+                <div class="card-rb">13</div>
+                <div class="card-center">13</div>
+              </button>
+              <button complexity="20" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">20</div>
+                <div class="card-ru">20</div>
+                <div class="card-lb">20</div>
+                <div class="card-rb">20</div>
+                <div class="card-center">20</div>
+              </button>
+              <button complexity="40" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">40</div>
+                <div class="card-ru">40</div>
+                <div class="card-lb">40</div>
+                <div class="card-rb">40</div>
+                <div class="card-center">40</div>
+              </button>
+              <button complexity="coffee" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">☕</div>
+                <div class="card-ru">☕</div>
+                <div class="card-lb">☕</div>
+                <div class="card-rb">☕</div>
+                <div class="card-center">☕</div>
+              </button>
+              <button complexity="?" data-target="planning.button" data-action="planning#selectComplexity" class="card ">
+                <div class="card-lu">?</div>
+                <div class="card-ru">?</div>
+                <div class="card-lb">?</div>
+                <div class="card-rb">?</div>
+                <div class="card-center">?</div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </main>
+
+
+    </div> <!-- /container -->
+
+
+  </body>
+</html>

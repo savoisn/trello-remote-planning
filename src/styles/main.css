@@ -1,0 +1,22 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+.red {
+  background-color:red;
+
+}
+
+body, form, ul, table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.header {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.header li {
+  margin-left: 10px;
+}
+
