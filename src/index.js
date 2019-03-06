@@ -10,3 +10,8 @@ application.load(definitionsFromContext(context))
 
 var Turbolinks = require("turbolinks")
 Turbolinks.start()
+
+function Choucroutte(){
+  return "Saucisse";
+}
+window.Choucroutte = Choucroutte

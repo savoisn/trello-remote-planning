@@ -25,7 +25,7 @@ module.exports = {
 
   resolve: {
     alias: {
-        'Trello': './src/assets/js/client.js'
+        'Trello': './src/assets/js/client.js',
         'SimplePeer': './src/assets/js/client.js'
     }
   },

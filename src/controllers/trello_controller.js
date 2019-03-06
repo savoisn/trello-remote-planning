@@ -46,6 +46,7 @@ export default class extends Controller {
     const event = new Event('refresh_board_list');
     this.getUserInfo()
     .then(userInfo => {
+      console.log(userInfo);
       this.toggleConnected(userInfo);
       bus.dispatchEvent(event);
     });
@@ -69,7 +70,7 @@ export default class extends Controller {
           fulfilled(boards);
         },
         function() { 
-          rejected( new Error("Failed to load boards") );
+          rejected( new Error("Failed to load user profile") );
         }
       );
    });
